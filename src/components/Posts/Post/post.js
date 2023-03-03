@@ -1,5 +1,5 @@
 import { getCategory, getStatus } from "../../Includes/variables";
-import "./styles.css";
+import "./styles.scss";
 
 // This is a child component
 function Post({
@@ -25,10 +25,10 @@ function Post({
   const promoteStyle = promote ? "promote-yes" : "promote-no";
 
   return (
-    <div className="childpost">
+    <div>
       <h2>{post}</h2>
       <div>
-        <img src={photo} alt={post} width={100} />
+        <img src="images/white-mountain.jpg" alt={post} width={100} />
       </div>
       <h3>{description}</h3>
       <h4>{getCategory(category)}</h4>

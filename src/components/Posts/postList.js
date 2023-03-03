@@ -16,8 +16,8 @@ function PostList({ posts, onPostLike, onPostDislike }) {
 
   return (
     <>
-      <main className="pc">
-        <h2 className="listofpost">Lists of Posts</h2>
+      <main>
+        <h2>Lists of Posts</h2>
         {posts.map((post, index) => (
           <Post
             key={index}

@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+header.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom:solid 3px $primary-color;
+    padding:5px;
+    
+}
+
+// when we import fonts, it will be embaded as an SVG after compilation
+
+svg{
+    font-size: 50px;
+    color:$primary-color;
+    margin-right: 10px;
+}
+
+h1{
+    margin:0;
+    font-family: $titie-font;
+    font-size: 30px;
+    font-weight: normal;
+    color: $secondary-color;
+
+}
