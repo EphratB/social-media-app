@@ -1,4 +1,5 @@
 import Post from "./Post/post";
+import "../Posts/styles.scss";
 // import uuid from "react-uuid";
 
 function PostList({ posts, onPostLike, onPostDislike }) {
@@ -16,8 +17,7 @@ function PostList({ posts, onPostLike, onPostDislike }) {
 
   return (
     <>
-      <main>
-        <h2>Lists of Posts</h2>
+      <main className="post-list">
         {posts.map((post, index) => (
           <Post
             key={index}
@@ -29,7 +29,7 @@ function PostList({ posts, onPostLike, onPostDislike }) {
           />
         ))}
 
-        <h3>
+        <h3 className="total-rate">
           Total likes: {totalLikes} | Total Dislikes: {totalDislikes}
         </h3>
       </main>

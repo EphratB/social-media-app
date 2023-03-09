@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { categories, statuses } from "../Includes/variables";
+import "./styles.scss";
 
 function Form({ onAddPost }) {
   const [post, setPost] = useState("");
@@ -91,18 +92,14 @@ function Form({ onAddPost }) {
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="form-component">
         {showSuccess && (
-          <div>
-            <p>
-              <strong>Form sucessfully submitted!!</strong>
-            </p>
-          </div>
+          <div className="success-message">Form sucessfully submitted!!</div>
         )}
 
         {/* output for error messages */}
         {errormsg.length > 0 && (
-          <div>
+          <div className="form-validate">
             Invalid data:
             <ul>
               {errormsg.map((error, index) => (
@@ -167,22 +164,20 @@ function Form({ onAddPost }) {
 
         {/* Promote with checkbox field */}
 
-        <div>
-          <label>
-            Promote
-            <input
-              type="checkbox"
-              checked={promote}
-              onChange={(event) => {
-                setPromote(event.target.checked);
-              }}
-            />
-          </label>
+        <div className="promote-feild">
+          <input
+            type="checkbox"
+            checked={promote}
+            onChange={(event) => {
+              setPromote(event.target.checked);
+            }}
+          />
+          <label>Promote</label>
         </div>
 
         {/* Status with radio field */}
 
-        <div>
+        <div className="status-feild">
           Status
           {statuses.map((item) => (
             <label key={item.id}>
@@ -202,13 +197,20 @@ function Form({ onAddPost }) {
 
         <fieldset>
           <legend>Picture:</legend>
-          <label>Select an Image: </label>
-          <input type="file" multiple onChange={handlePicture} />
+          <label>
+            Select an Image:
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handlePicture}
+            />
+          </label>
+
+          {/* Conditional output of the picture */}
+
+          {photo !== "" && <img src={photo} alt="preview" width={100} />}
         </fieldset>
-        {/* Conditional output of the picture */}
-        {photo !== "" && (
-          <img src={photo} alt="preview" width={300} height={250} />
-        )}
 
         <button>Send</button>
       </form>
