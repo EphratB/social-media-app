@@ -94,4 +94,16 @@
       }
     }
   }
+  .rate-single-button {
+    button {
+      &.dislike {
+        border-radius: 20px;
+      }
+
+      &.like {
+        border-right: none;
+        border-radius: 20px;
+      }
+    }
+  }
 }

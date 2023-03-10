@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { categories, statuses } from "../Includes/variables";
+import { useDispatch } from "react-redux";
 import "./styles.scss";
+import { addPost } from "../../redux/postSlice";
 
-function Form({ onAddPost }) {
+function Form() {
   const [post, setPost] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -12,6 +14,7 @@ function Form({ onAddPost }) {
   const [photo, setPhoto] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
 
+  const dispatch = useDispatch();
   // Form handler with validation
 
   const handleFormSubmit = (event) => {
@@ -47,7 +50,16 @@ function Form({ onAddPost }) {
       setStatus("");
       setPhoto("");
       // valid data
-      onAddPost(post, description, category, promote, status, photo);
+      //onAddPost(post, description, category, promote, status, photo);
+      const data = {
+        post,
+        description,
+        category,
+        promote,
+        status,
+        photo,
+      };
+      dispatch(addPost(data));
 
       console.log(post);
       console.log(description);

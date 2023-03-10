@@ -1,8 +1,14 @@
 import Post from "./Post/post";
 import "../Posts/styles.scss";
 // import uuid from "react-uuid";
+import { useSelector } from "react-redux";
 
-function PostList({ posts, onPostLike, onPostDislike }) {
+function PostList() {
+  const posts = useSelector((state) => state.post.posts);
+
+  const { allowLikes, allowDislikes } = useSelector((state) => state.settings);
+  //const posts = []; // empty array: space holder TODO: delte later
+
   // getting the sum of likes and dislikes
 
   let totalLikes = 0;
@@ -24,14 +30,17 @@ function PostList({ posts, onPostLike, onPostDislike }) {
             {...post}
             countLikes={post.likes}
             countDislikes={post.dislikes}
-            onPostLike={onPostLike}
-            onPostDislike={onPostDislike}
           />
         ))}
 
-        <h3 className="total-rate">
-          Total likes: {totalLikes} | Total Dislikes: {totalDislikes}
-        </h3>
+        {(allowLikes || allowDislikes) && (
+          <h3 className="total-rate">
+            {allowLikes && <>Total likes: {totalLikes} </>}
+            {allowLikes && allowDislikes && <> | </>}
+
+            {allowDislikes && <>Total Dislikes: {totalDislikes} </>}
+          </h3>
+        )}
       </main>
     </>
   );

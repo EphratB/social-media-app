@@ -1,11 +1,12 @@
 import { getCategory, getStatus } from "../../Includes/variables";
 import "./styles.scss";
 import { BiLike, BiDislike } from "react-icons/bi";
+import { useSelector, useDispatch } from "react-redux";
+import { dislikePost, likePost } from "../../../redux/postSlice";
 
 // This is a child component
 function Post({
   id,
-  post,
   description,
   category,
   promote,
@@ -13,17 +14,25 @@ function Post({
   photo,
   countLikes,
   countDislikes,
-  onPostLike,
-  onPostDislike,
 }) {
+  const post = []; // empty array: space holder TODO: delte later
+  const { allowLikes, allowDislikes } = useSelector((state) => state.settings);
+  const dispatch = useDispatch();
+
   const handleLikes = () => {
-    onPostLike(id);
-    console.log(id);
+    // onPostLike(id);
+    dispatch(likePost(id));
   };
   const handleDislike = () => {
-    onPostDislike(id);
+    //onPostDislike(id);
+    dispatch(dislikePost(id));
   };
   const promoteStyle = promote ? "promote-yes" : "promote-no";
+
+  let rateClassName = "rate";
+  if (!allowLikes || !allowDislikes) {
+    rateClassName += " rate-single-button";
+  }
 
   return (
     <div className="post-component">
@@ -44,20 +53,29 @@ function Post({
         Promote:
         <strong>{promote ? "Yes" : "No"}</strong>
       </div>
-      <div className="rate">
-        <button title="I like this" className="like" onClick={handleLikes}>
-          <BiLike />
-          {countLikes}
-        </button>
+      {/* Conditional statement for not to have an extra blank space 
+      if both allow likes and allwodislikes is not checked the div will still
+      be there, this is basically a conditional styling */}
 
-        <button
-          title="I dislike this"
-          className="dislike"
-          onClick={handleDislike}
-        >
-          <BiDislike /> {countDislikes}
-        </button>
-      </div>
+      {(allowLikes || allowDislikes) && (
+        <div className={rateClassName}>
+          {allowLikes && (
+            <button title="I like this" className="like" onClick={handleLikes}>
+              <BiLike />
+              {countLikes}
+            </button>
+          )}
+          {allowDislikes && (
+            <button
+              title="I dislike this"
+              className="dislike"
+              onClick={handleDislike}
+            >
+              <BiDislike /> {countDislikes}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
