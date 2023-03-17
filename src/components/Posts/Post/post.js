@@ -3,10 +3,12 @@ import "./styles.scss";
 import { BiLike, BiDislike } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { dislikePost, likePost } from "../../../redux/postSlice";
+import { Link } from "react-router-dom";
 
 // This is a child component
 function Post({
   id,
+  post,
   description,
   category,
   promote,
@@ -15,15 +17,17 @@ function Post({
   countLikes,
   countDislikes,
 }) {
-  const post = []; // empty array: space holder TODO: delte later
+  //const post = []; // empty array: space holder TODO: delte later
   const { allowLikes, allowDislikes } = useSelector((state) => state.settings);
   const dispatch = useDispatch();
 
-  const handleLikes = () => {
+  const handleLikes = (event) => {
+    event.preventDefault();
     // onPostLike(id);
     dispatch(likePost(id));
   };
-  const handleDislike = () => {
+  const handleDislike = (event) => {
+    event.preventDefault();
     //onPostDislike(id);
     dispatch(dislikePost(id));
   };
@@ -35,7 +39,7 @@ function Post({
   }
 
   return (
-    <div className="post-component">
+    <Link to={"/posts/" + id} className="post-component">
       <h3>{post}</h3>
       <div className="description">
         <img src="images/white-mountain.jpg" alt={post} />
@@ -76,7 +80,7 @@ function Post({
           )}
         </div>
       )}
-    </div>
+    </Link>
   );
 }
 export default Post;

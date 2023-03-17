@@ -7,19 +7,25 @@
   margin-bottom: 2rem;
   width: 100%;
   box-sizing: border-box;
+  text-decoration: none;
 
-  @include breakpoint-small {
+  @include breakpoint-xsmall {
     width: calc(50% - 2rem);
     margin-right: 2rem;
   }
 
   @include breakpoint-small {
     width: calc(33.33% - 2rem);
-    margin: 2rem 2rem 0rem 0rem;
+    margin: 2rem 2rem 0.5rem 0rem;
+  }
+  @include breakpoint-large {
+    width: calc(33.33% - 2rem);
+    margin: 2rem 2rem 0rem 2rem;
+    margin: 1rem;
   }
   h3 {
     margin: 0 0 1rem 0;
-    font-family: $titie-font;
+    font-family: $title-font;
     font-size: 28px;
     font-weight: normal;
     color: $primary-color;

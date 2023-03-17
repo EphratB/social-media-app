@@ -3,8 +3,11 @@ import { categories, statuses } from "../Includes/variables";
 import { useDispatch } from "react-redux";
 import "./styles.scss";
 import { addPost } from "../../redux/postSlice";
+import { useNavigate } from "react-router-dom";
 
 function Form() {
+  const navigate = useNavigate();
+
   const [post, setPost] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -39,7 +42,9 @@ function Form() {
     setErrormsg(validateData);
     if (validateData.length === 0) {
       // Display success message
-      setShowSuccess(true);
+      // setShowSuccess(true);
+      //instead of show success message we can navigate to home page
+      navigate("/");
 
       // Clear the form
 

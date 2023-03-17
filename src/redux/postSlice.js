@@ -8,20 +8,32 @@ const intialPost = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
     category: "ent",
-    promote: "false",
+    promote: true,
     status: "p",
     photo: "null",
     likes: 0,
     dislikes: 1,
   },
-
   {
     id: uuid(),
     post: "Road to Somewhere",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
     category: "edu",
-    promote: "true",
+    promote: true,
+    status: "a",
+    photo: "null",
+    likes: 10,
+    dislikes: 1,
+  },
+
+  {
+    id: uuid(),
+    post: "We said what we said",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    category: "edu",
+    promote: false,
     status: "a",
     photo: "null",
     likes: 10,
@@ -34,7 +46,7 @@ const intialPost = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
     category: "gam",
-    promote: "false",
+    promote: true,
     status: "p",
     photo: "null",
     likes: 36,

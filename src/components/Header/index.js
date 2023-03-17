@@ -8,7 +8,7 @@ function Header() {
     <>
       <header className="main">
         <ImNewspaper />
-        <h1>{appName}</h1>
+        <div>{appName}</div>
       </header>
       <MainMenu />
     </>

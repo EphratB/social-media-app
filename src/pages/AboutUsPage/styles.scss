@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+
+main.page {
+  .about-us-page {
+    aside {
+      margin-top: 3rem;
+      border: solid 1px $secondary-color;
+
+      a {
+        display: block;
+        color: $secondary-color;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 1rem;
+        border-top: solid 1px $secondary-color;
+
+        &:hover {
+          color: $success-color;
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,13 @@
 import "./styles.scss";
+import { NavLink } from "react-router-dom";
 
 export default function MainMenu() {
   return (
     <nav className="main">
-      <a href="/">Home</a>
-      <a href="/posts">Posts</a>
-      <a href="/preferences">Preference</a>
-      <a href="/about-us">About Us</a>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/posts">Posts</NavLink>
+      <NavLink to="/preferences">Preference</NavLink>
+      <NavLink to="/about-us">About Us</NavLink>
     </nav>
   );
 }

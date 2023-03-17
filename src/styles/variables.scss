@@ -1,4 +1,4 @@
-$titie-font: "Lobster", cursive;
+$title-font: "Lobster", cursive;
 $body-font: "Roboto Condensed", sans-serif;
 
 $primary-color: #008080;
@@ -15,14 +15,19 @@ $danger-color: #cd2424;
     @content;
   }
 }
+@mixin breakpoint-xsmall {
+  @include breakpoint(600px) {
+    @content;
+  }
+}
 @mixin breakpoint-small {
-  @include breakpoint(900px) {
+  @include breakpoint(992px) {
     @content;
   }
 }
 
 @mixin breakpoint-large {
-  @include breakpoint(1200px) {
+  @include breakpoint(1277px) {
     @content;
   }
 }

@@ -1,11 +1,13 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import HomePage from "./components/pages/HomePage";
-import PreferencesPage from "./components/pages/PreferencesPage";
-import PostListPage from "./components/pages/HomePage/PostListPage";
-import AboutUsPage from "./components/pages/AboutUsPage";
+import HomePage from "./pages/HomePage";
+import PreferencesPage from "./pages/PreferencesPage";
+import PostListPage from "./pages/PostListPage";
+import PostItemPage from "./pages/PostItemPage";
+import FormPostPage from "./pages/FormPostPage";
+import AboutUsPage from "./pages/AboutUsPage";
+import PageNotFound from "./pages/PageNotFound";
 import { Routes, Route } from "react-router-dom";
-import PageNotFound from "./components/pages/PageNotFound";
 
 function App() {
   return (
@@ -14,9 +16,13 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+
         <Route path="/posts" element={<PostListPage />} />
+        <Route path="/posts/add" element={<FormPostPage />} />
+        <Route path="/posts/:id" element={<PostItemPage />} />
+
         <Route path="/preferences" element={<PreferencesPage />} />
-        <Route path="/about" element={<AboutUsPage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 
