@@ -6,6 +6,9 @@ import PostListPage from "./pages/PostListPage";
 import PostItemPage from "./pages/PostItemPage";
 import FormPostPage from "./pages/FormPostPage";
 import AboutUsPage from "./pages/AboutUsPage";
+import AboutUsIntroductionPage from "./pages/AboutUsPage/introduction";
+import AboutUsMissionPage from "./pages/AboutUsPage/mission";
+import AboutUsPrivacyPage from "./pages/AboutUsPage/privacy";
 import PageNotFound from "./pages/PageNotFound";
 import { Routes, Route } from "react-router-dom";
 
@@ -22,7 +25,13 @@ function App() {
         <Route path="/posts/:id" element={<PostItemPage />} />
 
         <Route path="/preferences" element={<PreferencesPage />} />
-        <Route path="/about-us" element={<AboutUsPage />} />
+
+        <Route path="/about-us" element={<AboutUsPage />}>
+          <Route path="" element={<AboutUsIntroductionPage />} />
+          <Route path="mission" element={<AboutUsMissionPage />} />
+          <Route path="privacy" element={<AboutUsPrivacyPage />} />
+        </Route>
+
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 

@@ -1,7 +1,8 @@
 @import "../../styles/variables.scss";
 
 main.page {
-  .about-us-page {
+  margin-left: 1rem;
+  .containerabout-us-page {
     aside {
       margin-top: 3rem;
       border: solid 1px $secondary-color;
@@ -14,9 +15,31 @@ main.page {
         padding: 1rem;
         border-top: solid 1px $secondary-color;
 
+        &.active {
+          background-color: $primary-color;
+          color: white;
+        }
+
+        &:first-child {
+          border-top: none;
+        }
         &:hover {
           color: $success-color;
         }
+      }
+    }
+    @include breakpoint-xsmall {
+      display: flex;
+      align-items: flex-start;
+
+      article {
+        flex: 1;
+      }
+
+      aside {
+        width: 200px;
+        margin-left: 4rem;
+        margin-top: 0;
       }
     }
   }
