@@ -11,8 +11,17 @@ import AboutUsMissionPage from "./pages/AboutUsPage/mission";
 import AboutUsPrivacyPage from "./pages/AboutUsPage/privacy";
 import PageNotFound from "./pages/PageNotFound";
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+
+// import { load } from "./database/read";
+// import { save, update } from "./database/write";
+// import { load as databaseLoad, save, update } from "./database/index";
+import * as database from "./database"; // this is importing every method (if you wnat to work with just load its better to import load)
 
 function App() {
+  useEffect(() => {
+    database.load();
+  }, []);
   return (
     <>
       <Header />
