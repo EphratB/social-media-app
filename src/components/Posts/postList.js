@@ -15,6 +15,15 @@ function PostList({ showOnlyPromoted }) {
     posts = posts.filter((post) => post.promote);
   }
 
+  // now that we are working with database
+  // if we dont have any posts, we should communicate with the user that thier is no post
+  if (posts.length === 0) {
+    return (
+      <div className="no-post">
+        <h3>No post yet</h3>
+      </div>
+    );
+  }
   // getting the sum of likes and dislikes
 
   let totalLikes = 0;

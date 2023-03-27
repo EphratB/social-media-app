@@ -1,63 +1,63 @@
 import { createSlice } from "@reduxjs/toolkit";
 import uuid from "react-uuid";
 
-const intialPost = [
-  {
-    id: uuid(),
-    post: "The white Mountain",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-    category: "ent",
-    promote: true,
-    status: "p",
-    photo: "null",
-    likes: 0,
-    dislikes: 1,
-  },
-  {
-    id: uuid(),
-    post: "Road to Somewhere",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-    category: "edu",
-    promote: true,
-    status: "a",
-    photo: "null",
-    likes: 10,
-    dislikes: 1,
-  },
+// const intialPost = [
+//   {
+//     id: uuid(),
+//     post: "The white Mountain",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+//     category: "ent",
+//     promote: true,
+//     status: "p",
+//     photo: "null",
+//     likes: 0,
+//     dislikes: 1,
+//   },
+//   {
+//     id: uuid(),
+//     post: "Road to Somewhere",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+//     category: "edu",
+//     promote: true,
+//     status: "a",
+//     photo: "null",
+//     likes: 10,
+//     dislikes: 1,
+//   },
 
-  {
-    id: uuid(),
-    post: "We said what we said",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-    category: "edu",
-    promote: false,
-    status: "a",
-    photo: "null",
-    likes: 10,
-    dislikes: 1,
-  },
+//   {
+//     id: uuid(),
+//     post: "We said what we said",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+//     category: "edu",
+//     promote: false,
+//     status: "a",
+//     photo: "null",
+//     likes: 10,
+//     dislikes: 1,
+//   },
 
-  {
-    id: uuid(),
-    post: "Follow the flow",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-    category: "gam",
-    promote: true,
-    status: "p",
-    photo: "null",
-    likes: 36,
-    dislikes: 12,
-  },
-];
+//   {
+//     id: uuid(),
+//     post: "Follow the flow",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+//     category: "gam",
+//     promote: true,
+//     status: "p",
+//     photo: "null",
+//     likes: 36,
+//     dislikes: 12,
+//   },
+// ];
 
 export const postSlice = createSlice({
   name: "post",
   initialState: {
-    posts: intialPost,
+    posts: [],
   },
   reducers: {
     likePost: (state, action) => {
@@ -92,8 +92,11 @@ export const postSlice = createSlice({
       };
       state.posts.push(newPost);
     },
+    setPosts: (state, action) => {
+      state.posts = action.payload;
+    },
   },
 });
 
-export const { likePost, dislikePost, addPost } = postSlice.actions;
+export const { likePost, dislikePost, addPost, setPosts } = postSlice.actions;
 export default postSlice.reducer;
