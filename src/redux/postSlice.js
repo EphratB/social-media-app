@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import uuid from "react-uuid";
+//import uuid from "react-uuid";
 
 // const intialPost = [
 //   {
@@ -80,7 +80,8 @@ export const postSlice = createSlice({
 
     addPost: (state, action) => {
       const newPost = {
-        id: uuid(),
+        //id: uuid(),
+        id: action.payload.id,
         post: action.payload.post,
         description: action.payload.description,
         category: action.payload.category,

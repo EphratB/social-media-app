@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import "./styles.scss";
 import { addPost } from "../../redux/postSlice";
 import { useNavigate } from "react-router-dom";
+import * as database from "./../../database";
 
 function Form() {
   const navigate = useNavigate();
@@ -16,11 +17,12 @@ function Form() {
   const [errormsg, setErrormsg] = useState([]);
   const [photo, setPhoto] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const dispatch = useDispatch();
   // Form handler with validation
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     const validateData = [];
 
@@ -41,6 +43,8 @@ function Form() {
     }
     setErrormsg(validateData);
     if (validateData.length === 0) {
+      setIsSaving(true);
+
       // Display success message
       // setShowSuccess(true);
       //instead of show success message we can navigate to home page
@@ -63,7 +67,18 @@ function Form() {
         promote,
         status,
         photo,
+        likes: 0,
+        dislikes: 0,
       };
+      /**
+       * since we the id from the database and the id from uuid is diffrent we are sending id from the database
+       *
+       */
+      const saveId = await database.save(data);
+      setIsSaving(false);
+      console.log("Saved Id:", saveId);
+
+      data.id = saveId;
       dispatch(addPost(data));
 
       console.log(post);
@@ -106,7 +121,9 @@ function Form() {
       console.log("photo: ", photo);
     });
   };
-
+  if (isSaving) {
+    return <div>Saving ...</div>;
+  }
   return (
     <>
       <form onSubmit={handleFormSubmit} className="form-component">

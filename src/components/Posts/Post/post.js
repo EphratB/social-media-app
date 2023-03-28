@@ -1,7 +1,9 @@
-import { getCategory, getStatus } from "../../Includes/variables";
 import "./styles.scss";
-import { BiLike, BiDislike } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
+import * as database from "./../../../database";
+
+import { getCategory, getStatus } from "../../Includes/variables";
+import { BiLike, BiDislike } from "react-icons/bi";
 import { dislikePost, likePost } from "../../../redux/postSlice";
 import { Link } from "react-router-dom";
 
@@ -14,22 +16,41 @@ function Post({
   promote,
   status,
   photo,
-  countLikes,
-  countDislikes,
+  likes,
+  dislikes,
 }) {
   //const post = []; // empty array: space holder TODO: delte later
   const { allowLikes, allowDislikes } = useSelector((state) => state.settings);
   const dispatch = useDispatch();
 
-  const handleLikes = (event) => {
+  const handleLikes = async (event) => {
     event.preventDefault();
-    // onPostLike(id);
     dispatch(likePost(id));
+    // onPostLike(id);
+    const data = { likes: likes + 1 };
+    const updated = await database.update(id, data);
+    console.log("updated", updated);
+
+    if (!updated) {
+      // TODO: handle this with state and give feedback to tthe user
+      // TODO: if it case if it fails take the like back (less than one) likes: likes -1)
+      alert("Failed to update likes");
+    }
   };
-  const handleDislike = (event) => {
+  const handleDislike = async (event) => {
     event.preventDefault();
     //onPostDislike(id);
     dispatch(dislikePost(id));
+
+    const data = { dislikes: dislikes + 1 };
+    const updated = await database.update(id, data);
+    console.log("updated", updated);
+
+    if (!updated) {
+      // TODO: handle this with state and give feedback to tthe user
+      // TODO: if it case if it fails take the like back (less than one) likes: likes -1)
+      alert("Failed to update likes");
+    }
   };
   const promoteStyle = promote ? "promote-yes" : "promote-no";
 
@@ -66,7 +87,7 @@ function Post({
           {allowLikes && (
             <button title="I like this" className="like" onClick={handleLikes}>
               <BiLike />
-              {countLikes}
+              {likes}
             </button>
           )}
           {allowDislikes && (
@@ -75,7 +96,7 @@ function Post({
               className="dislike"
               onClick={handleDislike}
             >
-              <BiDislike /> {countDislikes}
+              <BiDislike /> {dislikes}
             </button>
           )}
         </div>

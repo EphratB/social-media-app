@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
+import Loading from "./components/Loading";
 import PreferencesPage from "./pages/PreferencesPage";
 import PostListPage from "./pages/PostListPage";
 import PostItemPage from "./pages/PostItemPage";
@@ -10,6 +11,7 @@ import AboutUsIntroductionPage from "./pages/AboutUsPage/introduction";
 import AboutUsMissionPage from "./pages/AboutUsPage/mission";
 import AboutUsPrivacyPage from "./pages/AboutUsPage/privacy";
 import PageNotFound from "./pages/PageNotFound";
+
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { setPosts } from "./redux/postSlice";
@@ -21,7 +23,7 @@ import * as database from "./database"; // this is importing every method (if yo
 
 function App() {
   const dispatch = useDispatch();
-  const [isLoading, setLoading] = useState(true); // is used for conditional loading
+  const [isLoading, setIsLoading] = useState(true); // is used for conditional loading
   useEffect(() => {
     // load the database
 
@@ -30,13 +32,15 @@ function App() {
     (async () => {
       const data = await database.load();
       dispatch(setPosts(data));
+      setIsLoading(false);
     })();
+    // eslint-disable-next-line
   }, []);
   return (
     <>
       <Header />
       {isLoading ? (
-        <div>Loading...</div>
+        <Loading className="loading-component" />
       ) : (
         <Routes>
           <Route path="/" element={<HomePage />} />
