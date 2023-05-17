@@ -43,8 +43,8 @@ function PostList({ showOnlyPromoted }) {
           <Post
             key={index}
             {...post}
-            countLikes={post.likes}
-            countDislikes={post.dislikes}
+            likes={post.likes}
+            dislikes={post.dislikes}
           />
         ))}
 

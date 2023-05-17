@@ -31,6 +31,7 @@ function App() {
 
     (async () => {
       const data = await database.load();
+      console.log("loading database", data);
       dispatch(setPosts(data));
       setIsLoading(false);
     })();

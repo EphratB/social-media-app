@@ -56,6 +56,7 @@ function processQuerySnapshot(querySnapshot) {
   });
   return data;
 }
+
 export async function loadById(id) {
   try {
     console.log("Load Id:", id);
@@ -65,9 +66,11 @@ export async function loadById(id) {
 
     if (docSnap.exists()) {
       return docSnap.data();
+    } else {
+      console.log(`No such document with id ${id}`);
     }
   } catch (err) {
-    return null;
+    console.error("Error loading movie by id:", err);
   }
   return null;
 }

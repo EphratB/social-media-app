@@ -6,12 +6,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDhQDv_ouRf7PQEJsPgXzSg9tWZ-eVFrqg",
-  authDomain: "ephratly.firebaseapp.com",
-  projectId: "ephratly",
-  storageBucket: "ephratly.appspot.com",
-  messagingSenderId: "280263034260",
-  appId: "1:280263034260:web:3178ba3f80d8395ee2fb81",
+  apiKey: "AIzaSyBN0NFVQoFXzpppAP4XURJXhFm5_D0fQ14",
+  authDomain: "socialmediaapp-54422.firebaseapp.com",
+  projectId: "socialmediaapp-54422",
+  storageBucket: "socialmediaapp-54422.appspot.com",
+  messagingSenderId: "106536178543",
+  appId: "1:106536178543:web:ac2ceab046f823b595ce9a",
+  measurementId: "G-8G10NCCD38",
 };
 
 // Initialize Firebase

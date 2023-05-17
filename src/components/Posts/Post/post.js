@@ -4,8 +4,9 @@ import * as database from "./../../../database";
 
 import { getCategory, getStatus } from "../../Includes/variables";
 import { BiLike, BiDislike } from "react-icons/bi";
-import { dislikePost, likePost } from "../../../redux/postSlice";
+import { dislikePost, likePost, removePost } from "../../../redux/postSlice";
 import { Link } from "react-router-dom";
+import { MdOutlineRemoveCircle } from "react-icons/md";
 
 // This is a child component
 function Post({
@@ -58,6 +59,18 @@ function Post({
   if (!allowLikes || !allowDislikes) {
     rateClassName += " rate-single-button";
   }
+  const handleRemoveClick = async (event) => {
+    event.preventDefault();
+    // Remove from Redux store
+    dispatch(removePost(id));
+
+    // Remove from Database
+    const removed = await database.remove(id);
+    if (!removed) {
+      // TODO: improve error message
+      alert("Failed to remove post");
+    }
+  };
 
   return (
     <Link to={"/posts/" + id} className="post-component">
@@ -101,6 +114,11 @@ function Post({
           )}
         </div>
       )}
+      <div className="remove">
+        <button onClick={handleRemoveClick}>
+          <MdOutlineRemoveCircle />
+        </button>
+      </div>
     </Link>
   );
 }

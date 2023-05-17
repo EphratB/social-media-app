@@ -80,6 +80,7 @@ function Form() {
 
       data.id = saveId;
       dispatch(addPost(data));
+      console.log(saveId);
 
       console.log(post);
       console.log(description);

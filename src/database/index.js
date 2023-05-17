@@ -1,5 +1,5 @@
 //import { load, loadById, loadPromoted } from "./read";
-export { save, update } from "./write";
+export { save, update, remove } from "./write";
 export { load, loadById, loadPromoted } from "./read";
 
 //this is another way of exporting and importing at the same time
